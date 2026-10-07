@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -24,6 +26,13 @@ public class CategoryService {
         log.info("Exiting saveCategory method of CategoryService");
         return categoryResponse;
 
+    }
+
+    public List<CategoryResponse> getAllCategpries() {
+        log.info("Inside getAllCategpries method of CategoryService");
+        List<CategoryResponse> categoryResponseList = categoryHelper.getAllCategories();
+        log.info("Exiting getAllCategpries method of CategoryService");
+        return categoryResponseList;
     }
 
     public CategoryResponse getCategoryById(Long id) {
