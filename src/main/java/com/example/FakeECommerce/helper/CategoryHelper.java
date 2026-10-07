@@ -1,6 +1,7 @@
 package com.example.FakeECommerce.helper;
 
 import com.example.FakeECommerce.entity.Category;
+import com.example.FakeECommerce.exception.ExceptionHelper;
 import com.example.FakeECommerce.mapper.CategoryMapper;
 import com.example.FakeECommerce.repository.CategoryRepository;
 import com.example.FakeECommerce.request.CategoryRequest;
@@ -20,6 +21,7 @@ public class CategoryHelper {
 
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
+    private final ExceptionHelper exceptionHelper;
 
     public CategoryResponse saveCategory(CategoryRequest categoryRequest) {
         log.info("Inside saveCategory method of CategoryHelper");
@@ -57,7 +59,7 @@ public class CategoryHelper {
     public CategoryResponse updateCategory(Long id, CategoryRequest categoryRequest) {
         log.info("Inside updateCategory method of CategoryHelper");
         Category category = getCategoryById(id);
-        category.setCategoryName(category.getCategoryName());
+        category.setCategoryName(categoryRequest.getCategoryName());
         categoryRepository.save(category);
         log.info("Category Updated Successfully");
         return categoryMapper.mapToCategoryResponse(category);
