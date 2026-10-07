@@ -23,11 +23,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-flyway'
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 	implementation 'org.flywaydb:flyway-sqlserver'
+	implementation 'org.mapstruct:mapstruct:1.6.3'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
 	runtimeOnly 'io.micrometer:micrometer-registry-new-relic'
 	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
@@ -36,6 +39,8 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testAnnotationProcessor 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+	testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 }
 
 tasks.named('test') {
