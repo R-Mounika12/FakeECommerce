@@ -18,11 +18,7 @@ import lombok.NonNull;
 @Builder
 @Entity
 @Table(name = "categories")
-public class Category {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Category extends BaseEntity{
 
     @NonNull
     @Column(name = "category_name")

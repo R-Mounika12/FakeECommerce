@@ -2,6 +2,7 @@ package com.example.FakeECommerce.validator;
 
 import com.example.FakeECommerce.exception.ExceptionHelper;
 import com.example.FakeECommerce.request.CategoryRequest;
+import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class CategoryValidator {
 
     public void validateCategoryRequest(CategoryRequest categoryRequest) {
         log.info("Inside validateCategoryRequest method of CategoryHelper");
-        if(null != categoryRequest && null != categoryRequest.getCategoryName()) {
+        if(null == categoryRequest || null == categoryRequest.getCategoryName() || StringUtils.isBlank(categoryRequest.getCategoryName())) {
             log.error("CategoryName is null or empty");
             exceptionHelper.badRequestException("CategoryName is null or empty");
         }

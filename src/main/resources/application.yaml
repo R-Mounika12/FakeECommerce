@@ -16,5 +16,5 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration/rollout
-    baseline-on-migrate: true
+    baseline-on-migrate: false
     validate-on-migrate: true
