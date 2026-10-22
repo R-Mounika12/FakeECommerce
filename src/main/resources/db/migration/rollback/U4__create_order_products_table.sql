@@ -1,0 +1,1 @@
+DROP TABLE IF EXITS order_products;
