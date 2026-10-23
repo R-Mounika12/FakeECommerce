@@ -27,6 +27,7 @@ public class CategoryHelper {
         log.info("Inside saveCategory method of CategoryHelper");
         try {
             Category category = categoryMapper.mapToCategory(categoryRequest);
+            category.setIsActive(true);
             Category savedCategory = categoryRepository.save(category);
             log.info("Category Saved Successfully");
             return categoryMapper.mapToCategoryResponse(savedCategory);
@@ -65,11 +66,12 @@ public class CategoryHelper {
         return categoryMapper.mapToCategoryResponse(category);
     }
 
-    public void deleteCategory(Long id ) {
+    public void deleteCategory(Long id) {
         log.info("Inside deleteCategory method of CategoryHelper");
         Category category = getCategoryById(id);
-        categoryRepository.delete(category);
-        log.info("Category Deleted Successfully");
+        category.setIsActive(false);
+        categoryRepository.save(category);
+        log.info("Category soft-deleted successfully");
     }
 
 

@@ -18,6 +18,7 @@ public class GlobalExceptionAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<GlobalExceptionWrapper> handleException(Exception ex) {
+        log.error("Unhandled exception", ex);
         return new ResponseEntity<>(new GlobalExceptionWrapper(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

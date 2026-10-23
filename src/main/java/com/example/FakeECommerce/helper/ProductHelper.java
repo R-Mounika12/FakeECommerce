@@ -48,7 +48,7 @@ public class ProductHelper {
         log.info("Inside updateProduct method of ProductHelper");
         try{
             Product savedProduct = getProduct(id);
-            Category category = getCategory(savedProduct.getCategory().getId());
+            Category category = getCategory(productRequest.getCategoryId());
             Product updatedProduct = null;
             if(savedProduct != null) {
               savedProduct.setProductName(productRequest.getProductName());
@@ -87,7 +87,10 @@ public class ProductHelper {
             List<Product> products = productRepository.findAll();
             if(!CollectionUtils.isEmpty(products)) {
                 return products.stream()
-                        .map(product -> productMapper.mapToProductResponse(product, product.getCategory()))
+                        .map(product -> {
+                            Category category = getCategory(product.getCategory().getId());
+                            return productMapper.mapToProductResponse(product, category);
+                        })
                         .toList();
             }
             return Collections.emptyList();

@@ -15,10 +15,10 @@ import com.example.FakeECommerce.request.OrderItemRequestDto;
 import com.example.FakeECommerce.request.UpdateOrderRequestDto;
 
 import com.example.FakeECommerce.response.OrderResponseDto;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -75,6 +75,7 @@ public class OrderHelper {
         return orderMapper.mapToOrderResponseDto(order, orderProducts);
     }
 
+    @Transactional(readOnly = true)
     public List<OrderResponseDto> getAllOrders() {
         log.info("Inside getAllOrders method of OrderHelper");
         List<Order> orders = orderRepository.findAll();
@@ -89,6 +90,7 @@ public class OrderHelper {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public OrderResponseDto getOrderById(Long orderId) {
         log.info("Inside getOrderById method of OrderHelper");
         Optional<Order> order = orderRepository.findById(orderId);

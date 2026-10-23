@@ -2,15 +2,13 @@ package com.example.FakeECommerce.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.hibernate.annotations.SQLRestriction;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +16,8 @@ import lombok.NonNull;
 @Builder
 @Entity
 @Table(name = "categories")
-public class Category extends BaseEntity{
+@SQLRestriction("is_active = true")
+public class Category extends BaseEntity {
 
     @NonNull
     @Column(name = "category_name")
