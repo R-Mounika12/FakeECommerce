@@ -77,7 +77,7 @@ public class CategoryHelper {
 
     private Category getCategoryById(Long id) {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category Not Found"));
+                .orElseThrow(() -> exceptionHelper.resourceNotFoundException("Category Not Found"));
     }
 
 }

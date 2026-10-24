@@ -105,7 +105,8 @@ public class OrderHelper {
         log.info("Inside deleteOrder method of OrderHelper");
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order with id " + orderId + " not found"));
-        orderRepository.delete(order);
+        order.setIsActive(false);
+        orderRepository.save(order);
     }
 
     public OrderResponseDto updateOrder(Long orderId, UpdateOrderRequestDto updateOrderRequestDto) {

@@ -9,4 +9,12 @@ public class ExceptionHelper {
     public BadRequestException badRequestException(String message) {
         return new BadRequestException(message);
     }
+
+    public ResourceNotFoundException resourceNotFoundException(String message) {
+        return new ResourceNotFoundException(message);
+    }
+
+    public ResourceDeletionException resourceDeletionException(String message) {
+        return new ResourceDeletionException(message);
+    }
 }

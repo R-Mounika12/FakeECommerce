@@ -103,7 +103,9 @@ public class ProductHelper {
     public void deleteProduct(Long id) {
         log.info("Inside deleteProduct method of ProductHelper");
         try {
-            productRepository.deleteById(id);
+            Product savedProduct = getProduct(id);
+            savedProduct.setIsActive(false);
+            productRepository.save(savedProduct);
         }catch (Exception e) {
             log.error("Error while deleting Product");
             throw new RuntimeException("Error while deleting Product");
